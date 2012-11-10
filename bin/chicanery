@@ -4,4 +4,6 @@ $:.unshift File.dirname(__FILE__)+'/../lib'
 
 require 'chicanery/cli'
 
-Chicanery::Cli.execute *ARGV
+extend Chicanery::Cli
+
+execute *ARGV
