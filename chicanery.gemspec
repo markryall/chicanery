@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Chicanery::VERSION
   gem.authors       = ["Mark Ryall"]
   gem.email         = ["mark@ryall.name"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{trigger various events related to a continuous integration environment}
+  gem.summary       = %q{polls various resources related to a ci environment and performs custom notifications}
+  gem.homepage      = "http://github.com/markryall/chicanery"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
