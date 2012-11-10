@@ -5,12 +5,12 @@
   <Project name="sampleproject :: specs :: specs" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="55" lastBuildTime="2012-11-10T12:39:46" webUrl="http://192.168.1.2:8153/go/tab/build/detail/sampleproject/55/specs/1/specs" />
   <Project name="sampleproject :: features" activity="Sleeping" lastBuildStatus="Failure" lastBuildLabel="55" lastBuildTime="2012-11-10T13:06:00" webUrl="http://192.168.1.2:8153/go/pipelines/sampleproject/55/features/1">
     <messages>
-      <message text="suren reddy &lt;suren@sampleproject.com&gt;" kind="Breakers" />
+      <message text="build breaker &lt;buildbreaker@sampleproject.com&gt;" kind="Breakers" />
     </messages>
   </Project>
   <Project name="sampleproject :: features :: features" activity="Sleeping" lastBuildStatus="Failure" lastBuildLabel="55" lastBuildTime="2012-11-10T13:06:00" webUrl="http://192.168.1.2:8153/go/tab/build/detail/sampleproject/55/features/1/features">
     <messages>
-      <message text="suren reddy &lt;suren@sampleproject.com&gt;" kind="Breakers" />
+      <message text="build breaker &lt;buildbreaker@sampleproject.com&gt;" kind="Breakers" />
     </messages>
   </Project>
   <Project name="sampleproject :: staging" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="51" lastBuildTime="2012-10-23T00:23:22" webUrl="http://192.168.1.2:8153/go/pipelines/sampleproject/51/staging/1" />
