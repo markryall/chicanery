@@ -1,7 +1,7 @@
 module Chicanery
   module Cli
     def self.execute *args
-      puts args
+      load args.shift
     end
   end
 end
