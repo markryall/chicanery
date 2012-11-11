@@ -1,0 +1,2 @@
+default: -r features -t ~@wip
+wip: -r features -t @wip --wip
