@@ -19,7 +19,7 @@ module Chicanery
       res.body
     end
 
-    def parse
+    def jobs
       Nokogiri::XML(get).css("Project").map do |project|
         {
           name: project[:name],
