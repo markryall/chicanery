@@ -23,5 +23,21 @@ module Chicanery
     def failure_handlers
       @failure_handlers ||= []
     end
+
+    def when_broken &block
+      broken_handlers << block
+    end
+
+    def broken_handlers
+      @broken_handlers ||= []
+    end
+
+    def when_fixed &block
+      fixed_handlers << block
+    end
+
+    def fixed_handlers
+      @fixed_handlers ||= []
+    end
   end
 end
