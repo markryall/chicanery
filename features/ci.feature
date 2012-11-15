@@ -10,8 +10,8 @@ Feature: ci
     | name | status  | activity |
     | job1 | success | sleeping |
     | job2 | success | sleeping |
-    And stdout ci handlers
-    When I run `chicanery`
+    And a stdout ci handler
+    When I engage in chicanery
     Then the exit status should be 0
     And the stdout should contain:
     """
