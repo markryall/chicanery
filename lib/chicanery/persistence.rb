@@ -9,6 +9,7 @@ module Chicanery
     end
 
     def restore
+      return {} unless File.exist? 'state'
       YAML.load_file 'state'
     end
   end
