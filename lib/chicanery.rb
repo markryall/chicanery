@@ -13,10 +13,10 @@ module Chicanery
     load args.shift
     previous = restore
     current = {
-      jobs: []
+      servers: {}
     }
     servers.each do |server|
-      current[:jobs] += server.jobs
+      current[:servers][server.name] = server.jobs
     end
     run_handlers.each {|handler| handler.call current }
     persist current

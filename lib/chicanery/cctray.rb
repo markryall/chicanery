@@ -4,10 +4,10 @@ require 'date'
 
 module Chicanery
   class Cctray
-    attr_reader :uri, :user, :password
+    attr_reader :name, :uri, :user, :password
 
-    def initialize url, user, password
-      @uri, @user, @password = URI(url), user, password
+    def initialize name, url, user, password
+      @name, @uri, @user, @password = name, URI(url), user, password
     end
 
     def get
@@ -20,9 +20,9 @@ module Chicanery
     end
 
     def jobs
-      Nokogiri::XML(get).css("Project").map do |project|
-        {
-          name: project[:name],
+      jobs = {}
+      Nokogiri::XML(get).css("Project").each do |project|
+        jobs[project[:name]]= {
           activity: project[:activity],
           last_build_status: project[:lastBuildStatus],
           last_build_time: DateTime.parse(project[:lastBuildTime]),
@@ -30,6 +30,7 @@ module Chicanery
           last_label: project[:lastBuildLabel]
         }
       end
+      jobs
     end
   end
 end
