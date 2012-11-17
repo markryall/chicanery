@@ -4,15 +4,15 @@ require 'date'
 
 module Chicanery
   class Cctray
-    attr_reader :name, :uri, :user, :password
+    attr_reader :name, :uri, :options
 
-    def initialize name, url, user=nil, password=nil
-      @name, @uri, @user, @password = name, URI(url), user, password
+    def initialize name, url, options={}
+      @name, @uri, @options = name, URI(url), options
     end
 
     def get
       req = Net::HTTP::Get.new(uri.path)
-      req.basic_auth user, password if user and password
+      req.basic_auth user, password if options[:user] and options[:password]
       res = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |https|
         https.request(req)
       end
@@ -22,15 +22,21 @@ module Chicanery
     def jobs
       jobs = {}
       Nokogiri::XML(get).css("Project").each do |project|
-        jobs[project[:name]]= {
+        job = {
           activity: project[:activity],
           last_build_status: project[:lastBuildStatus] == 'Success' ? :success : :failure,
           last_build_time: DateTime.parse(project[:lastBuildTime]),
           url: project[:webUrl],
           last_label: project[:lastBuildLabel]
         }
+        jobs[project[:name]] = job unless filtered project[:name]
       end
       jobs
+    end
+
+    def filtered name
+      return true unless options[:include]
+      !options[:include].match(name)
     end
   end
 end
