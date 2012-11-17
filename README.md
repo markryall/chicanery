@@ -21,7 +21,6 @@ Create a configuration file.  This file is just a ruby file that can make use of
     server Chicanery::Cctray.new 'tddium', 'https://cihost.com/cctray.xml'
 
     when_succeeded do |job_name, job|
-      post_antechamber 'ocelots', "#{job_name} [#{job[:last_label]}](#{job[:url]}) has **succeeded**"
       puts "#{job_name} has succeeded"
     end
 
