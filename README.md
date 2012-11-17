@@ -49,6 +49,12 @@ You'll notice a file called 'state' is created which represents the state at the
 
 Currently only ci servers that can provide cctray.xml are supported.  This includes thoughtworks go, tddium, jenkins, cc.net and several others.
 
+For a jenkins or hudson server, monitor http://jenkins-server:port/cc.xml
+
+For a go server, monitor https://go-server:8154/go/cctray.xml
+
+Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without certificate verification (since go generates a self signed cert that would be rejected without significant messing around).
+
 ## Plans for world domination
 
 * monitoring a git repository for push notifications
