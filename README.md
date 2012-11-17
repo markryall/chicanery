@@ -54,13 +54,13 @@ Currently only ci servers that can provide [cctray reporting format](http://conf
 
 This includes thoughtworks go, tddium, travisci, jenkins, cc.net and several others:
 
-For a jenkins or hudson server, monitor http://<jenkins-server>:port/cc.xml
+For a jenkins or hudson server, monitor http://jenkins-server:8080/cc.xml
 
-For a go server, monitor https://<go-server>:8154/go/cctray.xml
+For a go server, monitor https://go-server:8154/go/cctray.xml
 
-For a travis ci project, monitor http://travis-ci.org/<owner>/<project>/cc.xml
+For a travis ci project, monitor http://travis-ci.org/owner/project/cc.xml
 
-For a tddium project, monitor the link 'Configure with CCMenu' which will look something like https://api.tddium.com/cc/<long string>/cctray.xml
+For a tddium project, monitor the link 'Configure with CCMenu' which will look something like https://api.tddium.com/cc/long_uuid_string/cctray.xml
 
 Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without performing certificate verification (some ci servers such as thoughtworks go generates a self signed cert that would otherwise be rejected without significant messing around).
 
