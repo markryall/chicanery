@@ -2,7 +2,7 @@
 
 This is a command line tool to trigger any kind of action in response to any interesting event in a software development project (such as build server events, commit events, deployment events, etc.).
 
-This is intended to run unattended on a server and is not really intended for local notifications on a developer's machine.  If this is what you're looking for, take a look at (build reactor)[https://github.com/AdamNowotny/BuildReactor] instead.
+This is intended to run unattended on a server and is not really intended for local notifications on a developer's machine.  If this is what you're looking for, take a look at [build reactor](https://github.com/AdamNowotny/BuildReactor) instead.
 
 Any kind of action can be taken in response to these events - playing a sound, announcement in an irc session, firing a projectile at a developer, emitting an odour etc.
 
@@ -51,7 +51,7 @@ You'll notice a file called 'state' is created which represents the state at the
 
 ## Supported CI servers
 
-Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard] are supported.
+Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard) are supported.
 
 This includes thoughtworks go, tddium, travisci, jenkins, cc.net and several others:
 
