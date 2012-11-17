@@ -1,8 +1,12 @@
 # Chicanery
 
-This is a gem to trigger any kind of action in response to an interesting event in a software development project (such as build server events, commit events, deployment events, etc.).
+This is a command line tool to trigger any kind of action in response to any interesting event in a software development project (such as build server events, commit events, deployment events, etc.).
 
-State is persisted between executions so that it can be run as a simple polling process or can be scheduled to run regularly with crontab.
+This is intended to run unattended on a server and is not really intended for local notifications on a developer's machine.  If this is what you're looking for, take a look at (build reactor)[https://github.com/AdamNowotny/BuildReactor] instead.
+
+Any kind of action can be taken in response to these events - playing a sound, announcement in an irc session, firing a projectile at a developer, emitting an odour etc.
+
+State is persisted between executions so that it be scheduled to run regularly with crontab or it can simply be run as a long polling process.
 
 ## Installation
 
@@ -47,13 +51,19 @@ You'll notice a file called 'state' is created which represents the state at the
 
 ## Supported CI servers
 
-Currently only ci servers that can provide cctray.xml are supported.  This includes thoughtworks go, tddium, jenkins, cc.net and several others.
+Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard] are supported.
 
-For a jenkins or hudson server, monitor http://jenkins-server:port/cc.xml
+This includes thoughtworks go, tddium, travisci, jenkins, cc.net and several others:
 
-For a go server, monitor https://go-server:8154/go/cctray.xml
+For a jenkins or hudson server, monitor http://<jenkins-server>:port/cc.xml
 
-Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without certificate verification (since go generates a self signed cert that would be rejected without significant messing around).
+For a go server, monitor https://<go-server>:8154/go/cctray.xml
+
+For a travis ci project, monitor http://travis-ci.org/<owner>/<project>/cc.xml
+
+For a tddium project, monitor the link 'Configure with CCMenu' which will look something like https://api.tddium.com/cc/<long string>/cctray.xml
+
+Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without performing certificate verification (some ci servers such as thoughtworks go generates a self signed cert that would otherwise be rejected without significant messing around).
 
 ## Plans for world domination
 
@@ -61,8 +71,9 @@ Basic authentication is supported by passing :user => 'user', :password => 'pass
 * monitoring a mercurial repository for push notifications
 * monitoring a subversion repository for commit notifications
 * monitoring heroku for deployment event notification
-* integration with the blinky gem to control build light
-* integration with more ci servers (atlassian bamboo, jetbrains team city, etc.)
+* monitoring more ci servers (atlassian bamboo, jetbrains team city, etc.)
+* integration with the blinky gem to control a delcom build light
+* other interesting notifier plugins or examples
 
 ## Contributing
 
