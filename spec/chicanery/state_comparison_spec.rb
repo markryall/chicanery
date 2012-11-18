@@ -19,8 +19,13 @@ describe Chicanery::StateComparison do
   end
 
   describe '#compare_job' do
-    let(:current_job) { {last_build_time: Time.now } }
-    let(:previous_job) { {last_build_time: (Time.now-1) } }
+    let(:current_job)  { { activity: :sleeping, last_build_time: Time.now,  } }
+    let(:previous_job) { { activity: :sleeping, last_build_time: (Time.now-1) } }
+
+    before {
+      stub! :notify_failed_handlers
+      stub! :notify_succeeded_handlers
+    }
 
     after { compare_job 'name', current_job, previous_job }
 
@@ -28,10 +33,31 @@ describe Chicanery::StateComparison do
       current_job[:last_build_time] = previous_job[:last_build_time] = Time.now
     end
 
-    it 'should notify started_handlers when activity is now building when it was previously sleeping' do
+    it 'should notify started handlers when activity changes to building' do
       current_job[:activity] = :building
-      previous_job[:activity] = :sleeping
       should_receive(:notify_started_handlers).with 'name', current_job
+    end
+
+    it 'should notify succeeded handlers when a build is successful' do
+      current_job[:last_build_status] = :success
+      should_receive(:notify_succeeded_handlers).with 'name', current_job
+    end
+
+    it 'should notify failed handlers when a build fails' do
+      current_job[:last_build_status] = :failure
+      should_receive(:notify_failed_handlers).with 'name', current_job
+    end
+
+    it 'should notify broken handlers when a build is broken' do
+      previous_job[:last_build_status] = :success
+      current_job[:last_build_status] = :failure
+      should_receive(:notify_broken_handlers).with 'name', current_job
+    end
+
+    it 'should notify fixed handlers when a build is fixed' do
+      previous_job[:last_build_status] = :failure
+      current_job[:last_build_status] = :success
+      should_receive(:notify_fixed_handlers).with 'name', current_job
     end
   end
 end
