@@ -1,4 +1,4 @@
-require 'chicanery/state_comparison'
+require 'spec_helper'
 
 describe Chicanery::StateComparison do
   include Chicanery::StateComparison

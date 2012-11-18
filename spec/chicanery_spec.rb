@@ -1,4 +1,4 @@
-require 'chicanery'
+require 'spec_helper'
 
 describe Chicanery do
   include Chicanery
