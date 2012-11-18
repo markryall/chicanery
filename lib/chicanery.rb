@@ -26,7 +26,7 @@ module Chicanery
       end
       run_handlers.each {|handler| handler.call current_state }
       persist current_state
-      exit unless poll_period
+      break unless poll_period
       sleep poll_period.to_i
     end
   end
