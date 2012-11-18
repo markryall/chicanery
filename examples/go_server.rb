@@ -1,1 +1,0 @@
-puts "loading configuration from #{__FILE__}"
