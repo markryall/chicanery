@@ -25,7 +25,7 @@ module Chicanery
         job = {
           activity: project[:activity],
           last_build_status: project[:lastBuildStatus] == 'Success' ? :success : :failure,
-          last_build_time: DateTime.parse(project[:lastBuildTime]),
+          last_build_time: project[:lastBuildTime].empty? ? nil : DateTime.parse(project[:lastBuildTime]),
           url: project[:webUrl],
           last_label: project[:lastBuildLabel]
         }

@@ -9,6 +9,10 @@ module Chicanery
         def #{status}_handlers
           @#{status}_handlers ||= []
         end
+
+        def notify_#{status}_handlers *args
+          #{status}_handlers.each {|handler| handler.call *args }
+        end
       EOF
     end
   end
