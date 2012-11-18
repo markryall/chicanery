@@ -9,6 +9,10 @@ module Chicanery
 
     def compare_job name, current, previous
       return unless current[:last_build_time] != previous[:last_build_time]
+      if current[:activity] == :building and previous[:activity] == :sleeping
+        notify_started_handlers name, current
+        return
+      end
       notify_succeeded_handlers name, current if current[:last_build_status] == :success
       notify_failed_handlers name, current if current[:last_build_status] == :failure
       notify_broken_handlers name, current if current[:last_build_status] == :failure and previous[:last_build_status] == :success

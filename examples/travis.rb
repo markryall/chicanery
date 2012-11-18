@@ -2,6 +2,10 @@ require 'chicanery/cctray'
 
 server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
+when_started do |job_name, job|
+  puts "#{job_name} build has started"
+end
+
 when_succeeded do |job_name, job|
   puts "#{job_name} has succeeded"
 end

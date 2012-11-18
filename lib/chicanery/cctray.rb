@@ -23,7 +23,7 @@ module Chicanery
       jobs = {}
       Nokogiri::XML(get).css("Project").each do |project|
         job = {
-          activity: project[:activity],
+          activity: project[:activity] == 'Sleeping' ? :sleeping : :building,
           last_build_status: project[:lastBuildStatus] == 'Success' ? :success : :failure,
           last_build_time: project[:lastBuildTime].empty? ? nil : DateTime.parse(project[:lastBuildTime]),
           url: project[:webUrl],
