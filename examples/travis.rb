@@ -3,7 +3,7 @@ require 'chicanery/cctray'
 server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
 when_started do |job_name, job|
-  `afplay ~/build_sounds/startup.mp3`
+  `afplay ~/build_sounds/ticktock.mp3`
   puts "job #{job_name} has started"
 end
 
