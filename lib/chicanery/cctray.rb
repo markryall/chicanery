@@ -35,7 +35,7 @@ module Chicanery
     end
 
     def filtered name
-      return true unless options[:include]
+      return false unless options[:include]
       !options[:include].match(name)
     end
   end

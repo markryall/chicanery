@@ -58,7 +58,7 @@ For a jenkins or hudson server, monitor http://jenkins-server:8080/cc.xml
 
 For a go server, monitor https://go-server:8154/go/cctray.xml
 
-For a travis ci project, monitor http://travis-ci.org/owner/project/cc.xml
+For a travis ci project, monitor https://api.travis-ci.org/repositories/owner/project/cc.xml
 
 For a tddium project, monitor the link 'Configure with CCMenu' which will look something like https://api.tddium.com/cc/long_uuid_string/cctray.xml
 
