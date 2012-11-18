@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chicanery (0.0.3)
+    chicanery (0.0.4)
       nokogiri (~> 1)
 
 GEM

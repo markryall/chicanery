@@ -9,7 +9,7 @@ module Chicanery
   include Handlers
   include StateComparison
 
-  VERSION = "0.0.3"
+  VERSION = "0.0.4"
 
   def execute *args
     load args.shift
