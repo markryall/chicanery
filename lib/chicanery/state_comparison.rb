@@ -18,5 +18,9 @@ module Chicanery
       notify_broken_handlers name, current if current[:last_build_status] == :failure and previous[:last_build_status] == :success
       notify_fixed_handlers name, current if current[:last_build_status] == :success and previous[:last_build_status] == :failure
     end
+
+    def compare_repo_state name, current, previous
+      notify_commit_handlers name, current if current != previous
+    end
   end
 end
