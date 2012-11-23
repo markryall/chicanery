@@ -27,15 +27,15 @@ module Chicanery
           servers: {},
           repos: {}
         }
-        servers.each do |server|
-          current_jobs = server.jobs
-          compare_jobs current_jobs, previous_state[:servers][server.name] if previous_state[:servers]
-          current_state[:servers][server.name] = current_jobs
-        end
         repos.each do |repo|
           repo_state = repo.state
           compare_repo_state repo.name, repo_state, previous_state[:repos][repo.name] if previous_state[:repos]
           current_state[:repos][repo.name] = repo_state
+        end
+        servers.each do |server|
+          current_jobs = server.jobs
+          compare_jobs current_jobs, previous_state[:servers][server.name] if previous_state[:servers]
+          current_state[:servers][server.name] = current_jobs
         end
         run_handlers.each {|handler| handler.call current_state }
         persist current_state
