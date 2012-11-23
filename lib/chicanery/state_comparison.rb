@@ -20,7 +20,7 @@ module Chicanery
     end
 
     def compare_repo_state name, current, previous
-      notify_commit_handlers name, current if current != previous
+      notify_commit_handlers name, current, previous if current != previous
     end
   end
 end
