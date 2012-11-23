@@ -5,13 +5,13 @@ if ENV['COVERAGE']
 end
 
 require 'chicanery/persistence'
-require 'chicanery/servers'
+require 'chicanery/collections'
 require 'chicanery/handlers'
 require 'chicanery/state_comparison'
 
 module Chicanery
   include Persistence
-  include Servers
+  include Collections
   include Handlers
   include StateComparison
 
