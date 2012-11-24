@@ -1,9 +1,15 @@
 require 'chicanery/cctray'
+require 'chicanery/git'
 
+repo Chicanery::Git.new 'chicanery', 'git://github.com/markryall/chicanery.git'
 server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
 def growlnotify message
   `growlnotify -t "some new chicanery ..." --image ~/icons/chicanery.png -m \"#{message}\"`
+end
+
+when_commit do |repo, commit, previous|
+  growlnotify "commit #{previous}..#{commit} detected in repo #{repo}"
 end
 
 when_started do |job_name, job|
