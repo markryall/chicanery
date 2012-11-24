@@ -17,8 +17,18 @@ State is persisted between executions so that it be scheduled to run regularly w
 Create a configuration file.  This file is just a ruby file that can make use of a few configuration and callback methods:
 
     require 'chicanery/cctray'
+    require 'chicanery/git'
 
+    repo Chicanery::Git.new 'chicanery', 'git://github.com/markryall/chicanery.git'
     server Chicanery::Cctray.new 'tddium', 'https://cihost.com/cctray.xml'
+
+    when_run do |state|
+      puts 'checked state'
+    end
+
+    when_commit do |repo, commit, previous|
+      puts "commit #{previous}..#{commit} detected in repo #{repo}"
+    end
 
     when_succeeded do |job_name, job|
       puts "#{job_name} has succeeded"
@@ -66,7 +76,6 @@ Basic authentication is supported by passing :user => 'user', :password => 'pass
 
 ## Plans for world domination
 
-* monitoring a git repository for push notifications
 * monitoring a mercurial repository for push notifications
 * monitoring a subversion repository for commit notifications
 * monitoring heroku for deployment event notification
