@@ -20,7 +20,13 @@ module Chicanery
     end
 
     def compare_repo_state name, current, previous
-      notify_commit_handlers name, current, previous if current != previous
+      current.each do |remote, branches|
+        next unless previous[remote]
+        branches.each do |branch, state|
+          next unless previous[remote][branch]
+          notify_commit_handlers "#{name}/#{remote}/#{branch}", state, previous[remote][branch] if state != previous[remote][branch]
+        end
+      end
     end
   end
 end
