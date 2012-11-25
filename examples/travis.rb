@@ -1,7 +1,9 @@
 require 'chicanery/cctray'
 require 'chicanery/git'
 
-repo Chicanery::Git.new 'chicanery', 'git://github.com/markryall/chicanery.git'
+include Chicanery::Git
+
+git_repo 'chicanery', 'git://github.com/markryall/chicanery.git'
 server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
 def growlnotify message

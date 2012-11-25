@@ -5,9 +5,10 @@ module Chicanery
     class Repo
       attr_reader :name, :url
 
-      def initialize params
-        @name, @remotes = params[:name], params[:remotes]
-        @remotes['origin'] = { url: params[:url], branches: params[:branches] }
+      def initialize name, url, params
+        @name, @remotes = name, params[:remotes]
+        @remotes ||= {}
+        @remotes['origin'] = { url: url, branches: params[:branches] }
       end
 
       def state
@@ -33,8 +34,8 @@ module Chicanery
       end
     end
 
-    def git_repo params
-      repo Repo.new params
+    def git_repo *args
+      repo Repo.new *args
     end
   end
 end
