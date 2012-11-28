@@ -15,7 +15,7 @@ module Chicanery
         FileUtils.mkdir 'repos' unless File.exists? 'repos'
 
         Dir.chdir('repos') do
-          `git clone -q -n #{remotes['origin']['url']} #{name}` unless File.exists? name
+          `git clone -q -n #{remotes['origin'][:url]} #{name}` unless File.exists? name
         end
 
         remotes = {}
