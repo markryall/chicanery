@@ -3,7 +3,7 @@ require 'fileutils'
 module Chicanery
   module Git
     class Repo
-      attr_reader :name, :url
+      attr_reader :name, :url, :remotes
 
       def initialize name, url, params
         @name, @remotes = name, params[:remotes]
@@ -15,12 +15,12 @@ module Chicanery
         FileUtils.mkdir 'repos' unless File.exists? 'repos'
 
         Dir.chdir('repos') do
-          `git clone -q -n #{@url} #{name}` unless File.exists? name
+          `git clone -q -n #{remotes['origin'][:url]} #{name}` unless File.exists? name
         end
 
         remotes = {}
         Dir.chdir("repos/#{name}") do
-          @remotes.each do |name, remote|
+          remotes.each do |name, remote|
             remotes[name] = {}
             `git remote add #{name} #{remote[:url]}` unless `git remote | grep #{name}`.chomp == name
             `git fetch -q #{name}`
