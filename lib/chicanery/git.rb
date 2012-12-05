@@ -28,8 +28,7 @@ module Chicanery
         response = {}
         in_repo do
           remotes.each do |name, remote|
-            remotes_status[name] = {}
-            git "remote add #{name} #{remote[:url]}" unless git("remote | grep #{name}") == name
+            git "remote add #{name} #{remote[:url]}" unless git("remote | grep #{name}") == name.to_s
             git "fetch -q #{name}"
             (remote[:branches] || ['master']).each do |branch|
               response["#{name}/#{branch}"] = head "#{name}/#{branch}"
