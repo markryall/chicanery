@@ -19,7 +19,11 @@ Create a configuration file.  This file is just a ruby file that can make use of
     require 'chicanery/cctray'
     require 'chicanery/git'
 
-    repo Chicanery::Git.new 'chicanery', 'git://github.com/markryall/chicanery.git'
+    include Chicanery::Git
+
+    git_repo 'chicanery', '/tmp/chicanery', remotes: {
+      github: { url: 'git://github.com/markryall/chicanery.git' }
+    }
     server Chicanery::Cctray.new 'tddium', 'https://cihost.com/cctray.xml'
 
     when_run do |state|
