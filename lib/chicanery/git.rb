@@ -43,7 +43,7 @@ module Chicanery
       end
 
       def head branch
-        /^([^ ]*) /.match git "log -n 1 #{branch} --pretty=oneline"
+        match = /^([^ ]*) /.match git "log -n 1 #{branch} --pretty=oneline"
         match[1] if match
       end
 
