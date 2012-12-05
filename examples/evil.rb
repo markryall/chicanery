@@ -7,6 +7,8 @@ git_repo 'chicanery', '.', branches: [:master]
 start = Time.now.to_i
 maximum = ARGV.shift.to_i
 
+puts "Uncommitted changes will be automatically reverted after #{maximum} seconds"
+
 when_run do |state|
   elapsed = Time.now.to_i - start
   if elapsed >= maximum
