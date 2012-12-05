@@ -3,34 +3,48 @@ require 'fileutils'
 module Chicanery
   module Git
     class Repo
-      attr_reader :name, :url, :remotes
+      include FileUtils
 
-      def initialize name, url, params
-        @name, @remotes = name, params[:remotes]
-        @remotes ||= {}
-        @remotes['origin'] = { url: url, branches: params[:branches] }
+      attr_reader :name, :path, :branches, :remotes
+
+      def initialize name, path, params={}
+        @name, @path = name, path
+        @branches = params[:branches] || []
+        @remotes = params[:remotes] || {}
+      end
+
+      def in_repo
+        Dir.chdir(path) { yield }
+      end
+
+      def prepare
+        return if File.exists? path
+        mkdir_p path
+        in_repo { git 'init' }
       end
 
       def state
-        FileUtils.mkdir 'repos' unless File.exists? 'repos'
-
-        Dir.chdir('repos') do
-          git "clone -q -n #{remotes['origin'][:url]} #{name}" unless File.exists? name
-        end
-
-        remotes_status = {}
-        Dir.chdir("repos/#{name}") do
+        prepare
+        response = {}
+        in_repo do
           remotes.each do |name, remote|
             remotes_status[name] = {}
             git "remote add #{name} #{remote[:url]}" unless git("remote | grep #{name}") == name
             git "fetch -q #{name}"
             (remote[:branches] || ['master']).each do |branch|
-              git("log -n 1 #{name}/#{branch} --oneline") =~ /^([^ ]*) /
-              remotes_status[name][branch] = $1
+              response["#{name}/#{branch}"] = head "#{name}/#{branch}"
             end
-         end
+          end
+          branches.each do |branch|
+            response[branch] = head branch
+          end
         end
-        remotes_status
+        response
+      end
+
+      def head branch
+        /^([^ ]*) /.match git "log -n 1 #{branch} --pretty=oneline"
+        match[1] if match
       end
 
       def git command
