@@ -6,12 +6,12 @@ describe Chicanery do
 
     it 'should load configuration and exit immediately when nothing is configured no poll period is provided' do
       should_receive(:load).with 'configuration'
-      execute 'configuration'
+      execute %w{configuration}
     end
 
     it 'should restore previous state' do
       should_receive(:restore)
-      execute 'configuration'
+      execute %w{configuration}
     end
 
     it 'should persist new state' do
@@ -19,12 +19,12 @@ describe Chicanery do
         servers: {},
         repos: {}
       })
-      execute 'configuration'
+      execute %w{configuration}
     end
 
     it 'should sleep for specified time when poll period is provided' do
       should_receive(:sleep).with(10).and_raise Interrupt
-      execute 'configuration', '10'
+      execute %w{configuration 10}
     end
   end
 end

@@ -17,10 +17,10 @@ module Chicanery
 
   VERSION = "0.0.4"
 
-  def execute
+  def execute args
     begin
-      load ARGV.shift
-      poll_period = ARGV.shift
+      load args.shift
+      poll_period = args.shift
       loop do
         previous_state = restore
         current_state = {
