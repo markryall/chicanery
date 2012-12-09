@@ -13,7 +13,9 @@ when_run do |state|
   elapsed = Time.now.to_i - start
   if elapsed >= maximum
     puts "no commits detected in #{elapsed} seconds - reverting all uncommitted changes"
+    `afplay ~/build_sounds/ticktock.mp3`
     `git reset --hard`
+    `git clean -d -x -f`
     start = Time.now.to_i
   end
 end
