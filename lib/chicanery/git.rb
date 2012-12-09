@@ -28,21 +28,25 @@ module Chicanery
         response = {}
         in_repo do
           remotes.each do |name, remote|
-            git "remote add #{name} #{remote[:url]}" unless git("remote | grep #{name}") == name.to_s
-            git "fetch -q #{name}"
             (remote[:branches] || ['master']).each do |branch|
-              response["#{name}/#{branch}"] = head "#{name}/#{branch}"
+              response["#{name}/#{branch}"] = remote_head remote[:url], branch
             end
           end
-          branches.each do |branch|
-            response[branch] = head branch
-          end
+          branches.each { |branch| response[branch] = head branch }
         end
         response
       end
 
+      def remote_head url, branch
+        sha "ls-remote #{url} #{branch}"
+      end
+
       def head branch
-        match = /^([^ ]*) /.match git "log -n 1 #{branch} --pretty=oneline"
+        sha "log -n 1 #{branch} --pretty=oneline"
+      end
+
+      def sha command
+        match = /^([^ ]*) /.match git command
         match[1] if match
       end
 
