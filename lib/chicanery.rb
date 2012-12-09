@@ -15,7 +15,7 @@ module Chicanery
   include Handlers
   include StateComparison
 
-  VERSION = "0.0.4"
+  VERSION = "0.0.5"
 
   def execute args
     begin
