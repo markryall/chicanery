@@ -46,8 +46,7 @@ module Chicanery
       end
 
       def sha command
-        match = /^([^ ]*) /.match git command
-        match[1] if match
+        git(command).split.first
       end
 
       def git command
