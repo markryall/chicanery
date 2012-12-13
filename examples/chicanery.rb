@@ -3,7 +3,7 @@ require 'chicanery/git'
 
 include Chicanery::Git
 
-git_repo 'chicanery', '.', remotes: {
+git_repo 'chicanery', '.', branches: [:master], remotes: {
   github: { url: 'git://github.com/markryall/chicanery.git' }
 }
 
