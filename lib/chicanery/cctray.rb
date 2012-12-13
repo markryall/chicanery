@@ -36,8 +36,8 @@ module Chicanery
 
     def parse_build_status status
       case status
-      when /$Success/ then :success
-      when /$Unknown/ then :unknown
+      when /^Success/ then :success
+      when /^Unknown/ then :unknown
       else :failure
       end
     end
