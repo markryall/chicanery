@@ -13,6 +13,10 @@ def growlnotify message
   `growlnotify -t "some new chicanery ..." --image ~/icons/chicanery.png -m \"#{message}\"`
 end
 
+when_run do |state|
+  puts state.has_failure? ? "something is wrong" : "all builds are fine"
+end
+
 when_commit do |repo, commit, previous|
   growlnotify "commit #{previous}..#{commit} detected in repo #{repo}"
 end
