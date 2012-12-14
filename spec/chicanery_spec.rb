@@ -4,10 +4,6 @@ describe Chicanery do
   describe '#execute' do
     before { %w{load restore persist}.each {|m| stub! m } }
 
-    it 'should break the build' do
-      false.should be_true
-    end
-
     it 'should load configuration and exit immediately when nothing is configured no poll period is provided' do
       should_receive(:load).with 'configuration'
       execute %w{configuration}
