@@ -8,6 +8,7 @@ require 'chicanery/persistence'
 require 'chicanery/collections'
 require 'chicanery/handlers'
 require 'chicanery/state_comparison'
+require 'chicanery/summary'
 
 module Chicanery
   include Persistence
@@ -15,7 +16,7 @@ module Chicanery
   include Handlers
   include StateComparison
 
-  VERSION = "0.0.5"
+  VERSION = "0.0.6"
 
   def execute args
     load args.shift
@@ -53,6 +54,7 @@ module Chicanery
       compare_jobs current_jobs, previous_state[:servers][server.name] if previous_state[:servers]
       current_state[:servers][server.name] = current_jobs
     end
+    current_state.extend Chicanery::Summary
     run_handlers.each {|handler| handler.call current_state }
     persist current_state 
   end

@@ -19,8 +19,8 @@ describe Chicanery::StateComparison do
   end
 
   describe '#compare_job' do
-    let(:current_job)  { { activity: :sleeping, last_build_time: Time.now,  } }
-    let(:previous_job) { { activity: :sleeping, last_build_time: (Time.now-1) } }
+    let(:current_job)  { { activity: :sleeping, last_build_time: 10 } }
+    let(:previous_job) { { activity: :sleeping, last_build_time: 5  } }
 
     before {
       stub! :notify_failed_handlers

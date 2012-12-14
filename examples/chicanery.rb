@@ -3,7 +3,7 @@ require 'chicanery/git'
 
 include Chicanery::Git
 
-git_repo 'chicanery', '.', remotes: {
+git_repo 'chicanery', '.', branches: [:master], remotes: {
   github: { url: 'git://github.com/markryall/chicanery.git' }
 }
 
@@ -11,6 +11,10 @@ server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/m
 
 def growlnotify message
   `growlnotify -t "some new chicanery ..." --image ~/icons/chicanery.png -m \"#{message}\"`
+end
+
+when_run do |state|
+  puts state.has_failure? ? "something is wrong" : "all builds are fine"
 end
 
 when_commit do |repo, commit, previous|

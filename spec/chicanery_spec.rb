@@ -27,5 +27,4 @@ describe Chicanery do
       execute %w{configuration 10}
     end
   end
-
 end
