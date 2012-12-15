@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-origin:
+      - ! '*'
+      access-control-expose-headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified
+      cache-control:
+      - no-cache
+      content-type:
+      - application/json;charset=utf-8
+      date:
+      - Sat, 15 Dec 2012 02:41:37 GMT
+      etag:
+      - ! '"715c01a97e6124876f63088110deeafd"'
+      status:
+      - 200 OK
+      strict-transport-security:
+      - max-age=31536000
+      vary:
+      - Accept,Accept-Encoding
+      x-accepted-oauth-scopes:
+      - public
+      x-oauth-scopes:
+      - public
+      content-length:
+      - '245'
+      connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! "<Projects>\n  <Project\n    name=\"markryall/chicanery\"\n    activity=\"Sleeping\"\n
+        \   lastBuildStatus=\"Failure\"\n    lastBuildLabel=\"50\"\n    lastBuildTime=\"2012-12-15T02:41:20.000+0000\"\n
+        \   webUrl=\"api.travis-ci.org/markryall/chicanery\" />\n</Projects>"
+    http_version: '1.1'
+  recorded_at: Sat, 15 Dec 2012 02:41:42 GMT
+recorded_with: VCR 2.3.0
