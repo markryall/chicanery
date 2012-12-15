@@ -21,7 +21,7 @@ module Chicanery
   def execute args
     load args.shift
     poll_period = args.shift
-    if poll_period   
+    if poll_period
       run_every poll_period.to_i
     else
       run
@@ -38,7 +38,7 @@ module Chicanery
     end
   end
 
-  def run 
+  def run
     previous_state = restore
     current_state = {
       servers: {},
@@ -56,7 +56,7 @@ module Chicanery
     end
     current_state.extend Chicanery::Summary
     run_handlers.each {|handler| handler.call current_state }
-    persist current_state 
+    persist current_state
   end
 
 end
