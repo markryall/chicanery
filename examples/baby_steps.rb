@@ -4,6 +4,8 @@ include Chicanery::Git
 
 git 'chicanery', '.', branches: [:master]
 
+poll_period 10
+
 def now
   Time.now.to_i
 end
