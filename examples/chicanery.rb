@@ -10,6 +10,8 @@ git 'chicanery', '.', branches: [:master], remotes: {
 
 cctray 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
+poll_period 10
+
 def growlnotify message
   `growlnotify -t "some new chicanery ..." --image ~/icons/chicanery.png -m \"#{message}\"`
 end

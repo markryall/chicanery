@@ -18,9 +18,13 @@ module Chicanery
 
   VERSION = "0.0.7"
 
+  def poll_period seconds=nil
+    @poll_period = seconds if seconds
+    @poll_period
+  end
+
   def execute args
     load args.shift
-    poll_period = args.shift
     if poll_period
       run_every poll_period.to_i
     else

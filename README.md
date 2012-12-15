@@ -56,9 +56,9 @@ Now you can schedule the following command with cron:
 
     chicanery myconfiguration
 
-Or continuously poll every 10 seconds:
+Or to continuously poll every 10 seconds, add the following line to the configuration:
 
-    chicanery myconfiguration 10
+    poll_period 10
 
 You'll notice a file called 'state' is created which represents the state at the last execution.  This is then restored during the next execution to detect events such as a new build succeeding/failing.
 

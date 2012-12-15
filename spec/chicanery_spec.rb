@@ -24,7 +24,8 @@ describe Chicanery do
 
     it 'should sleep for specified time when poll period is provided' do
       should_receive(:sleep).with(10).and_raise Interrupt
-      execute %w{configuration 10}
+      poll_period 10
+      execute %w{configuration}
     end
   end
 end
