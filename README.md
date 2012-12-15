@@ -62,6 +62,10 @@ Or to continuously poll every 10 seconds, add the following line to the configur
 
 You'll notice a file called 'state' is created which represents the state at the last execution.  This is then restored during the next execution to detect events such as a new build succeeding/failing.
 
+If you want to specify an alternate location for this state file, add the following line to your configuration file:
+
+    persist_state_to '/tmp/build_state'
+
 ## Supported CI servers
 
 Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard) are supported.
