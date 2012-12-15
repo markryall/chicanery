@@ -1,6 +1,10 @@
 describe Chicanery::StateComparison do
   include Chicanery::StateComparison
 
+  it 'should fail' do
+    1.should == 2
+  end
+
   describe '#compare_jobs' do
     let(:current_jobs) { {} }
     let(:previous_jobs) { {} }
