@@ -25,5 +25,13 @@ describe Chicanery do
       should_receive(:sleep).with(10).and_raise Interrupt
       poll_period 10
     end
+
+    it "polls with a specified period" do
+      should_receive(:run).exactly(3).times
+      should_receive(:sleep).with(10).ordered
+      should_receive(:sleep).with(10).ordered
+      should_receive(:sleep).with(10).ordered.and_raise Interrupt
+      poll_period 10
+    end
   end
 end

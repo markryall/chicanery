@@ -35,15 +35,4 @@ describe Chicanery do
     # it compares current state and previous state for each server
 
   end
-
-  describe '#run_every' do
-    it "polls with a specified period" do
-      should_receive(:run).exactly(3).times
-      should_receive(:sleep).with(10).ordered
-      should_receive(:sleep).with(10).ordered
-      should_receive(:sleep).with(10).ordered.and_raise Interrupt
-      run_every 10
-    end
-  end
-
 end

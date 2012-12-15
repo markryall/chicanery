@@ -25,17 +25,10 @@ module Chicanery
 
   def execute args
     load args.shift
-    if poll_period
-      run_every poll_period.to_i
-    else
-      run
-    end
-  end
-
-  def run_every poll_period
     begin
       loop do
         run
+        break unless poll_period
         sleep poll_period
       end
     rescue Interrupt
