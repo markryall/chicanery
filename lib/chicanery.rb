@@ -52,7 +52,7 @@ module Chicanery
       current_state[:servers][server.name] = current_jobs
     end
     current_state.extend Chicanery::Summary
-    run_handlers.each {|handler| handler.call current_state }
+    run_handlers.each {|handler| handler.call current_state, previous_state }
     persist current_state
   end
 
