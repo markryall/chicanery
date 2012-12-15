@@ -54,7 +54,7 @@ module Chicanery
       end
     end
 
-    def git_repo *args
+    def git *args
       repo Repo.new *args
     end
   end

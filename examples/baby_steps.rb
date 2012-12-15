@@ -2,7 +2,7 @@ require 'chicanery/git'
 
 include Chicanery::Git
 
-git_repo 'chicanery', '.', branches: [:master]
+git 'chicanery', '.', branches: [:master]
 
 def now
   Time.now.to_i

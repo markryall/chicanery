@@ -2,12 +2,13 @@ require 'chicanery/cctray'
 require 'chicanery/git'
 
 include Chicanery::Git
+include Chicanery::Cctray
 
-git_repo 'chicanery', '.', branches: [:master], remotes: {
+git 'chicanery', '.', branches: [:master], remotes: {
   github: { url: 'git://github.com/markryall/chicanery.git' }
 }
 
-server Chicanery::Cctray.new 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
+cctray 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
 def growlnotify message
   `growlnotify -t "some new chicanery ..." --image ~/icons/chicanery.png -m \"#{message}\"`
