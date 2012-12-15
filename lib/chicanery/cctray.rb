@@ -4,7 +4,7 @@ require 'date'
 
 module Chicanery
   module Cctray
-    def new *args
+    def self.new *args
       Cctray::Server.new *args
     end
 
