@@ -52,4 +52,17 @@ describe Chicanery::Cctray do
       }
     end
   end
+  
+  it 'should complain if there are no jobs in response' do
+     VCR.use_cassette('no_projects') do
+       expect{server.jobs}.to raise_error "could not find any jobs in response: [Nothing here but us chickens]"
+     end
+  end
+  
+  it 'should complain if it gets a non 2xx response' do
+     VCR.use_cassette('redirect') do
+       expect{server.jobs}.to raise_error Net::HTTPRetriableError
+     end
+  end  
+  
 end
