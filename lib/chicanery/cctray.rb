@@ -25,12 +25,14 @@ module Chicanery
         res = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |https|
           https.request(req)
         end
+        res.value #check for success via a spectactulalry poorly named method
         res.body
       end
 
       def jobs
         jobs = {}
-        Nokogiri::XML(get).css("Project").each do |project|
+        response_body = get
+        Nokogiri::XML(response_body).css("Project").each do |project|
           job = {
             activity: project[:activity] == 'Sleeping' ? :sleeping : :building,
             last_build_status: parse_build_status(project[:lastBuildStatus]),
@@ -40,6 +42,7 @@ module Chicanery
           }
           jobs[project[:name]] = job unless filtered project[:name]
         end
+        raise "could not find any jobs in response: [#{response_body}]" if jobs.empty?
         jobs
       end
 

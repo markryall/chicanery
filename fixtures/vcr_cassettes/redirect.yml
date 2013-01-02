@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Redirect
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-origin:
+      - ! '*'
+      access-control-expose-headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified
+      cache-control:
+      - no-cache
+      content-type:
+      - application/json;charset=utf-8
+      date:
+      - Sat, 15 Dec 2012 02:39:04 GMT
+      etag:
+      - ! '"aa451983b94cbec99aa94346f358b5b0"'
+      status:
+      - 200 OK
+      strict-transport-security:
+      - max-age=31536000
+      vary:
+      - Accept,Accept-Encoding
+      x-accepted-oauth-scopes:
+      - public
+      x-oauth-scopes:
+      - public
+      content-length:
+      - '217'
+      connection:
+      - keep-alive
+    body:
+      encoding: US-ASCII
+      string: ! "hhh"
+    http_version: '1.1'
+  recorded_at: Sat, 15 Dec 2012 02:39:09 GMT
+recorded_with: VCR 2.3.0
