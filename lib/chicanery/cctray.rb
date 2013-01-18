@@ -21,7 +21,7 @@ module Chicanery
 
       def get
         req = Net::HTTP::Get.new(uri.path)
-        req.basic_auth user, password if options[:user] and options[:password]
+        req.basic_auth options[:user], options[:password] if options[:user] and options[:password]
         res = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |https|
           https.request(req)
         end
