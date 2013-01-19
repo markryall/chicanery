@@ -25,6 +25,10 @@ module Chicanery
 
   def execute args
     load args.shift
+    run_every poll_period
+  end
+
+  def run_every poll_period
     begin
       loop do
         run
