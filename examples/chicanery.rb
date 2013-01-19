@@ -10,6 +10,8 @@ git 'chicanery', '.', branches: [:master], remotes: {
 
 cctray 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
+site 'travis', 'https://travis-ci.org/markryall/chicanery'
+
 poll_period 10
 
 def growlnotify message

@@ -1,4 +1,4 @@
-require 'chicanery/http'
+require 'chicanery/site'
 require 'nokogiri'
 require 'date'
 
@@ -12,18 +12,10 @@ module Chicanery
       server Cctray::Server.new *args
     end
 
-    class Server
-      include Chicanery::Http
-      attr_reader :name, :uri, :options
-
-      def initialize name, url, options={}
-        @name, @uri, @options = name, URI(url), options
-      end
-
+    class Server < Chicanery::Site
       def jobs
         jobs = {}
-        response_body = get uri, options
-        Nokogiri::XML(response_body).css("Project").each do |project|
+        Nokogiri::XML(response_body = get).css("Project").each do |project|
           job = {
             activity: project[:activity] == 'Sleeping' ? :sleeping : :building,
             last_build_status: parse_build_status(project[:lastBuildStatus]),
