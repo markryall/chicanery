@@ -1,5 +1,5 @@
-describe Chicanery::StateComparison do
-  include Chicanery::StateComparison
+describe Chicanery::Servers do
+  include Chicanery::Servers
 
   describe '#compare_jobs' do
     let(:current_jobs) { {} }
