@@ -15,11 +15,7 @@ describe Chicanery do
     end
 
     it 'should persist new state' do
-      should_receive(:persist).with({
-        servers: {},
-        repos: {},
-        sites: {}
-      })
+      should_receive(:persist).with servers: {}, repos: {}, sites: {}
     end
 
     it 'should sleep for specified time when poll period is provided' do
