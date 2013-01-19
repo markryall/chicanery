@@ -1,6 +1,6 @@
 module Chicanery
   module Handlers
-    %w{run started succeeded failed broken fixed commit}.each do |status|
+    %w{run started succeeded failed broken fixed commit up down crashed recovered}.each do |status|
       class_eval <<-EOF
         def when_#{status} &block
           #{status}_handlers << block

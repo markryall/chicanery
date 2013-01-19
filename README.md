@@ -66,6 +66,39 @@ If you want to specify an alternate location for this state file, add the follow
 
     persist_state_to '/tmp/build_state'
 
+# Callbacks
+
+## General
+
+The 'when_run' callback is executed on every poll.
+
+## Servers
+
+The following callbacks may be received after checking a CI server:
+
+* when_started - when a new job has started
+* when_succeeded - when a job finishes successfully
+* when_failed - when a job finishes unsuccessfully
+* when_broken - when a previously passing job fails
+* when_fixed - when a previously succeeding job passes
+
+## Repos
+
+The following callbacks may be received after checking a source repository:
+
+* when_commit - when a new commit is detected in the repository
+
+Currently only git repositories are supported.
+
+## Site
+
+The following callbacks may be received after checking a web site:
+
+* when_up - the website responded with a 2xx HTTP status
+* when_down - the website did not responded with a 2xx HTTP status
+* when_crashed - the website was previously up and is now down
+* when_recovered - the website was previously down and is now up
+
 ## Supported CI servers
 
 Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard) are supported.
@@ -88,7 +121,6 @@ Basic authentication is supported by passing :user => 'user', :password => 'pass
 * monitoring a subversion repository for commit notifications
 * monitoring heroku for deployment event notification
 * monitoring more ci servers (atlassian bamboo, jetbrains team city, etc.)
-* integration with the blinky gem to control a delcom build light
 * other interesting notifier plugins or examples
 
 ## Contributing

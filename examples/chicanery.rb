@@ -10,7 +10,7 @@ git 'chicanery', '.', branches: [:master], remotes: {
 
 cctray 'travis', 'https://api.travis-ci.org/repositories/markryall/chicanery/cc.xml'
 
-site 'travis', 'https://travis-ci.org/markryall/chicanery'
+site 'travis', 'http://api.travis-ci.org/repositories/markryall/chicanery.json'
 
 poll_period 10
 
@@ -47,4 +47,21 @@ end
 when_fixed do |job_name, job|
   growlnotify "job #{job_name} is fixed"
   `afplay ~/build_sounds/applause.mp3`
+end
+
+
+when_up do |name, site|
+  puts "#{name} is up"
+end
+
+when_down do |name, site|
+  puts "#{name} is down"
+end
+
+when_crashed do |name, site|
+  puts "#{name} has crashed"
+end
+
+when_recovered do |name, site|
+  puts "#{name} has recovered"
 end
