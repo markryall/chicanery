@@ -50,6 +50,10 @@ when_fixed do |job_name, job|
   `afplay ~/build_sounds/applause.mp3`
 end
 
+when_up do |name, site|
+  puts "#{name} returned #{site.code} in #{site.duration} seconds"
+end
+
 when_crashed do |name, site|
   puts "#{name} has crashed with status of #{site.code}"
 end
