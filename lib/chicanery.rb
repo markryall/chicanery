@@ -5,7 +5,6 @@ if ENV['COVERAGE']
 end
 
 require 'chicanery/persistence'
-require 'chicanery/handlers'
 require 'chicanery/servers'
 require 'chicanery/repos'
 require 'chicanery/sites'
@@ -13,7 +12,6 @@ require 'chicanery/summary'
 
 module Chicanery
   include Persistence
-  include Handlers
   include Servers
   include Repos
   include Sites

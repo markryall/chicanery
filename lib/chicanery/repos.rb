@@ -1,8 +1,10 @@
 require 'chicanery/collections'
+require 'chicanery/handlers'
 
 module Chicanery
   module Repos
     include Collections
+    include Handlers
 
     def check_repos current_state, previous_state
       current_state[:repos] = {}

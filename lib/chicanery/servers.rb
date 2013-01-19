@@ -1,8 +1,10 @@
 require 'chicanery/collections'
+require 'chicanery/handlers'
 
 module Chicanery
   module Servers
     include Collections
+    include Handlers
 
     def check_servers current_state, previous_state
       current_state[:servers] = {}
