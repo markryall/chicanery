@@ -51,17 +51,17 @@ end
 
 
 when_up do |name, site|
-  puts "#{name} is up"
+  puts "#{name} is up with status of #{site.code}"
 end
 
 when_down do |name, site|
-  puts "#{name} is down"
+  puts "#{name} is down with status of #{site.code}"
 end
 
 when_crashed do |name, site|
-  puts "#{name} has crashed"
+  puts "#{name} has crashed with status of #{site.code}"
 end
 
 when_recovered do |name, site|
-  puts "#{name} has recovered"
+  puts "#{name} has recovered with status of #{site.code}"
 end
