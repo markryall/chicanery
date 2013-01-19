@@ -17,7 +17,8 @@ describe Chicanery do
     it 'should persist new state' do
       should_receive(:persist).with({
         servers: {},
-        repos: {}
+        repos: {},
+        sites: {}
       })
     end
 

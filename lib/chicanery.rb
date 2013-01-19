@@ -8,6 +8,7 @@ require 'chicanery/persistence'
 require 'chicanery/handlers'
 require 'chicanery/servers'
 require 'chicanery/repos'
+require 'chicanery/sites'
 require 'chicanery/summary'
 
 module Chicanery
@@ -15,6 +16,7 @@ module Chicanery
   include Handlers
   include Servers
   include Repos
+  include Sites
 
   VERSION = "0.1.0"
 
@@ -44,6 +46,7 @@ module Chicanery
     current_state = {}
     check_servers current_state, previous_state
     check_repos current_state, previous_state
+    check_sites current_state, previous_state
     current_state.extend Chicanery::Summary
     run_handlers.each {|handler| handler.call current_state, previous_state }
     persist current_state
