@@ -16,7 +16,7 @@ module Chicanery
   include Handlers
   include StateComparison
 
-  VERSION = "0.0.8"
+  VERSION = "0.0.9"
 
   def poll_period seconds=nil
     @poll_period = seconds if seconds
