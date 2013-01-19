@@ -7,14 +7,14 @@ end
 require 'chicanery/persistence'
 require 'chicanery/handlers'
 require 'chicanery/servers'
-require 'chicanery/state_comparison'
+require 'chicanery/repos'
 require 'chicanery/summary'
 
 module Chicanery
   include Persistence
   include Handlers
   include Servers
-  include StateComparison
+  include Repos
 
   VERSION = "0.1.0"
 
@@ -41,15 +41,9 @@ module Chicanery
 
   def run
     previous_state = restore
-    current_state = {
-      repos: {}
-    }
+    current_state = {}
     check_servers current_state, previous_state
-    repos.each do |repo|
-      repo_state = repo.state
-      compare_repo_state repo.name, repo_state, previous_state[:repos][repo.name] if previous_state[:repos]
-      current_state[:repos][repo.name] = repo_state
-    end
+    check_repos current_state, previous_state
     current_state.extend Chicanery::Summary
     run_handlers.each {|handler| handler.call current_state, previous_state }
     persist current_state
