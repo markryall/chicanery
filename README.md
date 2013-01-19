@@ -16,18 +16,18 @@ State is persisted between executions so that it be scheduled to run regularly w
 
 Create a configuration file.  This file is just a ruby file that can make use of a few configuration and callback methods:
 
-    require 'chicanery/cctray'
     require 'chicanery/git'
-
     include Chicanery::Git
-
-    git_repo 'chicanery', '/tmp/chicanery', remotes: {
+    git 'chicanery', '.', branches: [:master], remotes: {
       github: { url: 'git://github.com/markryall/chicanery.git' }
     }
-    server Chicanery::Cctray.new 'tddium', 'https://cihost.com/cctray.xml'
+
+    require 'chicanery/cctray'
+    include Chicanery::Cctray
+    cctray 'tddium', 'https://cihost.com/cctray.xml'
 
     when_run do |state|
-      puts 'checked state'
+      puts state.has_failure? ? "something is wrong" : "all builds are fine"
     end
 
     when_commit do |repo, commit, previous|
@@ -80,7 +80,7 @@ The following callbacks may be received after checking a CI server:
 * when_succeeded - when a job finishes successfully
 * when_failed - when a job finishes unsuccessfully
 * when_broken - when a previously passing job fails
-* when_fixed - when a previously succeeding job passes
+* when_fixed - when a previously failing job passes
 
 ## Repos
 
