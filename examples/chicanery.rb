@@ -20,6 +20,7 @@ end
 
 when_run do |state|
   puts state.has_failure? ? "something is wrong" : "all builds are fine"
+  puts state.site_down? ? "something is wrong" : "all sites are fine"
 end
 
 when_commit do |repo, commit, previous|
@@ -47,14 +48,6 @@ end
 when_fixed do |job_name, job|
   growlnotify "job #{job_name} is fixed"
   `afplay ~/build_sounds/applause.mp3`
-end
-
-when_up do |name, site|
-  puts "#{name} is up with status of #{site.code}"
-end
-
-when_down do |name, site|
-  puts "#{name} is down with status of #{site.code}"
 end
 
 when_crashed do |name, site|
