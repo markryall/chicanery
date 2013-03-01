@@ -19,7 +19,7 @@ module Chicanery
           job = {
             activity: project[:activity] == 'Sleeping' ? :sleeping : :building,
             last_build_status: parse_build_status(project[:lastBuildStatus]),
-            last_build_time: project[:lastBuildTime].empty? ? nil : DateTime.parse(project[:lastBuildTime]).to_time.to_i,
+            last_build_time: parse_build_time(project[:lastBuildTime]),
             url: project[:webUrl],
             last_label: project[:lastBuildLabel]
           }
@@ -27,6 +27,11 @@ module Chicanery
         end
         raise "could not find any jobs in response: [#{response_body}]" if jobs.empty?
         jobs
+      end
+
+      def parse_build_time time
+        return nil if time.nil? || time.empty?
+        DateTime.parse(time).to_time.to_i
       end
 
       def parse_build_status status

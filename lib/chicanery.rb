@@ -16,7 +16,7 @@ module Chicanery
   include Repos
   include Sites
 
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 
   def poll_period seconds=nil
     @poll_period = seconds if seconds
@@ -24,18 +24,18 @@ module Chicanery
   end
 
   def execute args
-    load args.shift
-    run_every poll_period
+    begin
+      load args.shift
+      run_every poll_period
+    rescue Interrupt
+    end
   end
 
   def run_every poll_period
-    begin
-      loop do
-        run
-        break unless poll_period
-        sleep poll_period
-      end
-    rescue Interrupt
+    loop do
+      run
+      break unless poll_period
+      sleep poll_period
     end
   end
 
