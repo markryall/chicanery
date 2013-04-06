@@ -14,7 +14,7 @@ module Chicanery
       end.inject(false) {|v,a| v || a}
     end
 
-    def is_building?
+    def building?
       self[:servers].map do |name,jobs|
         jobs.map do |name, state|
           state[:activity] == :building
