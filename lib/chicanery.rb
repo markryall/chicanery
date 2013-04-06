@@ -16,7 +16,7 @@ module Chicanery
   include Repos
   include Sites
 
-  VERSION = "0.1.2"
+  VERSION = "0.1.3"
 
   def poll_period seconds=nil
     @poll_period = seconds if seconds
