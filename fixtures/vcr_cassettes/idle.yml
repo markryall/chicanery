@@ -46,9 +46,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: US-ASCII
-      string: ! "<Projects>\n  <Project\n    name=\"markryall/chicanery\"\n    activity=\"Sleeping\"\n
-        \   lastBuildStatus=\"Success\"\n    lastBuildLabel=\"48\"\n    lastBuildTime=\"2012-12-15T02:18:28.000+0000\"\n
-        \   webUrl=\"api.travis-ci.org/markryall/chicanery\" />\n</Projects>"
+      string: ! "<Projects>\n  <Project\n    name=\"markryall/chicanery\"\n    activity=\"Sleeping\"\nlastBuildStatus=\"Success\"\n    lastBuildLabel=\"48\"\n    lastBuildTime=\"2012-12-15T02:18:28.000+0000\"\nwebUrl=\"api.travis-ci.org/markryall/chicanery\" />\n</Projects>"
     http_version: '1.1'
   recorded_at: Sat, 15 Dec 2012 02:36:20 GMT
 recorded_with: VCR 2.3.0
