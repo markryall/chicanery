@@ -13,5 +13,13 @@ module Chicanery
         status == :down
       end.inject(false) {|v,a| v || a}
     end
+
+    def is_building?
+      self[:servers].map do |name,jobs|
+        jobs.map do |name, state|
+          state[:activity] == :building
+        end
+      end.flatten.inject(false) {|v,a| v || a}
+    end
   end
 end
