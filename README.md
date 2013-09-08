@@ -103,7 +103,7 @@ The following callbacks may be received after checking a web site:
 
 Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard) are supported.
 
-This includes thoughtworks go, tddium, travisci, jenkins, cc.net and several others:
+This includes thoughtworks go, tddium, travisci, circleci, jenkins, teamcity, cc.net and several others:
 
 For a jenkins or hudson server, monitor http://jenkins-server:8080/cc.xml
 
@@ -113,14 +113,17 @@ For a travis ci project, monitor https://api.travis-ci.org/repositories/owner/pr
 
 For a tddium project, monitor the link 'Configure with CCMenu' which will look something like https://api.tddium.com/cc/long_uuid_string/cctray.xml
 
-Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without performing certificate verification (some ci servers such as thoughtworks go generates a self signed cert that would otherwise be rejected without significant messing around).
+For team city, monitor the http://teamcity:8111/httpAuth/app/rest/cctray/projects.xml (requires credentials) or http://teamcity:8111/guestAuth/app/rest/cctray/projects.xml for guest. See [documentation](http://confluence.jetbrains.com/display/TW/REST+API+Plugin#RESTAPIPlugin-CCTray) for more information.
+
+For a circleci project, monitor the links https://circleci.com/cc.xml?circle-token=:circle-token, https://circleci.com/gh/:owner/:repo.cc.xml?circle-token=:circle-token or https://circleci.com/gh/:owner/:repo/tree/:branch.cc.xml?circle-token=:circle-token.  See [documentation](https://circleci.com/docs/polling-project-status) for more details.
+
+Basic authentication is supported by passing :user => 'user', :password => 'password' to the Chicanery::Cctray constructor.  https is supported without performing certificate verification (some ci servers such as thoughtworks go generates a self signed cert that would otherwise be rejected without significant messing around).  You can turn certificate verification back on by passing :verify_ssl => true.
 
 ## Plans for world domination
 
 * monitoring a mercurial repository for push notifications
 * monitoring a subversion repository for commit notifications
-* monitoring heroku for deployment event notification
-* monitoring more ci servers (atlassian bamboo, jetbrains team city, etc.)
+* monitoring more ci servers (atlassian bamboo, etc.)
 * other interesting notifier plugins or examples
 
 ## Contributing

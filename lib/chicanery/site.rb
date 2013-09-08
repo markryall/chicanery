@@ -1,4 +1,5 @@
 require 'net/http'
+require 'openssl'
 require 'benchmark'
 
 module Chicanery
@@ -11,6 +12,7 @@ module Chicanery
 
     def get
       req = Net::HTTP::Get.new uri.path
+      req += "?#{uri.query}" if uri.query
       req.basic_auth options[:user], options[:password] if options[:user] and options[:password]
       http_opts = { use_ssl: uri.scheme == 'https' }
       http_opts[:verify_mode] = OpenSSL::SSL::VERIFY_NONE unless options[:verify_ssl]
