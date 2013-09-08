@@ -1,8 +1,8 @@
 describe Chicanery::Persistence do
   include Chicanery::Persistence
 
-  let(:file) { stub 'file' }
-  let(:state) { stub 'state', to_yaml: :yaml }
+  let(:file) { double 'file' }
+  let(:state) { double 'state', to_yaml: :yaml }
 
   describe '#persist' do
     it 'should write state to disk as yaml' do

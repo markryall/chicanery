@@ -1,30 +1,31 @@
 describe Chicanery do
-  include Chicanery
+  subject { Object.new.extend Chicanery }
 
   describe '#run' do
-
     before do
-      server double("Server A", :name => "A", :jobs => "A jobs")
-      server double("Server B", :name => "B", :jobs => "B jobs")
-      repo  double("repo X", :name => "X", :state => "X state")
-      repo  double("repo Y", :name => "Y", :state => "Y state")
-      when_run do |current_state|
+      subject.server double("Server A", :name => "A", :jobs => "A jobs")
+      subject.server double("Server B", :name => "B", :jobs => "B jobs")
+      subject.repo  double("repo X", :name => "X", :state => "X state")
+      subject.repo  double("repo Y", :name => "Y", :state => "Y state")
+      subject.when_run do |current_state|
          @current_state = current_state
       end
       @current_state = nil
     end
 
-    before { stub!("restore").and_return({})}
-    before { %w{persist}.each {|m| stub! m } }
+    before do
+      subject.stub("restore") { {} }
+      subject.stub("persist")
+    end
 
     it "notifies when_run listeners of the current state of the servers jobs" do
-      run
+      subject.run
       @current_state[:servers]["A"].should == "A jobs"
       @current_state[:servers]["B"].should == "B jobs"
     end
 
     it "notifies when_run listeners of the current state of the repos" do
-      run
+      subject.run
       @current_state[:repos]["X"].should == "X state"
       @current_state[:repos]["Y"].should == "Y state"
     end
@@ -33,6 +34,5 @@ describe Chicanery do
     # it restores previous state and records current state
     # it compares current state and previous state for each server
     # it compares current state and previous state for each server
-
   end
 end

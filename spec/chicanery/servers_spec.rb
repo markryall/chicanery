@@ -23,8 +23,8 @@ describe Chicanery::Servers do
     let(:previous_job) { { activity: :sleeping, last_build_time: 5  } }
 
     before {
-      stub! :notify_failed_handlers
-      stub! :notify_succeeded_handlers
+      subject.stub :notify_failed_handlers
+      subject.stub :notify_succeeded_handlers
     }
 
     after { compare_job 'name', current_job, previous_job }
