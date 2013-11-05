@@ -15,7 +15,9 @@ module Chicanery
     class Server < Chicanery::Site
       def jobs
         jobs = {}
-        Nokogiri::XML(response_body = get).css("Project").each do |project|
+        response_body = get
+        File.open("#{Time.now.to_i}.xml", 'w') {|f| f.puts response_body} if ENV['CHICANERY_CAPTURE']
+        Nokogiri::XML(response_body).css("Project").each do |project|
           job = {
             activity: project[:activity] == 'Sleeping' ? :sleeping : :building,
             last_build_status: parse_build_status(project[:lastBuildStatus]),
@@ -23,6 +25,9 @@ module Chicanery
             url: project[:webUrl],
             last_label: project[:lastBuildLabel]
           }
+          project.css('message').each do |message|
+            job[:breaker] = message[:text] if message[:kind] == 'Breakers'
+          end
           jobs[project[:name]] = job unless filtered project[:name]
         end
         raise "could not find any jobs in response: [#{response_body}]" if jobs.empty?
