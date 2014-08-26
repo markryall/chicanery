@@ -4,6 +4,7 @@ if ENV['COVERAGE']
   SimpleCov.start 'gem'
 end
 
+require 'chicanery/version'
 require 'chicanery/persistence'
 require 'chicanery/servers'
 require 'chicanery/repos'
@@ -15,8 +16,6 @@ module Chicanery
   include Servers
   include Repos
   include Sites
-
-  VERSION = "0.1.8"
 
   def poll_period seconds=nil
     @poll_period = seconds if seconds
