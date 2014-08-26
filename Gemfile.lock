@@ -1,13 +1,15 @@
 PATH
   remote: .
   specs:
-    chicanery (0.1.7)
+    chicanery (0.1.8)
+      colorize (~> 0)
       nokogiri (~> 1)
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
+    colorize (0.7.3)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
