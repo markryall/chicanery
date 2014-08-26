@@ -35,7 +35,7 @@ module Chicanery
       end
 
       def parse_build_time time
-        return nil if time.nil? || time.empty? || time == '0'
+        return 0 if time.nil? || time.empty? || time == '0'
         DateTime.parse(time).to_time.to_i
       end
 

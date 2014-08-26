@@ -31,7 +31,7 @@ describe Chicanery::Cctray do
         "markryall/chicanery" => {
           activity: :building,
           last_build_status: :unknown,
-          last_build_time: nil,
+          last_build_time: 0,
           url: "api.travis-ci.org/markryall/chicanery",
           last_label: "49"
         }
