@@ -3,10 +3,11 @@ describe Chicanery::Persistence do
 
   let(:file) { double 'file' }
   let(:state) { double 'state', to_yaml: :yaml }
+  let(:state_regex) { /.*\/state.*/ }
 
   describe '#persist' do
     it 'should write state to disk as yaml' do
-      File.should_receive(:open).with('state', 'w').and_yield file
+      File.should_receive(:open).with(state_regex, 'w').and_yield file
       file.should_receive(:puts).with :yaml
       persist state
     end
@@ -21,13 +22,13 @@ describe Chicanery::Persistence do
 
   describe '#restore' do
     it 'should return empty hash if state file does not exist' do
-      File.should_receive(:exist?).with('state').and_return false
+      File.should_receive(:exist?).with(state_regex).and_return false
       restore.should == {}
     end
 
     it 'should read yaml from disk' do
-      File.should_receive(:exist?).with('state').and_return true
-      YAML.should_receive(:load_file).with('state').and_return state
+      File.should_receive(:exist?).with(state_regex).and_return true
+      YAML.should_receive(:load_file).with(state_regex).and_return state
       restore.should == state
     end
 
