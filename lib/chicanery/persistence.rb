@@ -16,7 +16,7 @@ module Chicanery
 
     def persist_state_to path=nil
       @state = path if path
-      @state ||= Dir::Tmpname.make_tmpname './state'
+      @state ||= Dir::Tmpname.make_tmpname './state', nil
     end
   end
 end
