@@ -1,3 +1,5 @@
+require 'chicanery'
+
 describe Chicanery::Collections do
   include Chicanery::Collections
 
