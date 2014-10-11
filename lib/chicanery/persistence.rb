@@ -3,6 +3,8 @@ require 'yaml'
 
 module Chicanery
   module Persistence
+    TEMP_DIR = './tmp'
+
     def persist state
       File.open persist_state_to, 'w' do |file|
         file.puts state.to_yaml
@@ -16,7 +18,8 @@ module Chicanery
 
     def persist_state_to path=nil
       @state = path if path
-      @state ||= Dir::Tmpname.make_tmpname './state', nil
+      Dir.mkdir TEMP_DIR if not Dir.exist? TEMP_DIR
+      @state ||= Dir::Tmpname.make_tmpname "#{TEMP_DIR}/state", nil
     end
   end
 end
