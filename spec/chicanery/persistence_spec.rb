@@ -8,10 +8,6 @@ describe Chicanery::Persistence do
   describe '#persist' do
     it 'should write state to disk as yaml' do
       File.should_receive(:open).with(state_regex, 'w').and_yield file
-
-      # fixme? internal Tempfile call?
-      File.should_receive(:open).with(anything, anything, anything)
-
       file.should_receive(:puts).with :yaml
       persist state
     end
