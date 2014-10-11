@@ -16,7 +16,7 @@ module Chicanery
 
     def persist_state_to path=nil
       @state = path if path
-      @state ||= Tempfile.new('state').path
+      @state ||= Tempfile.new('state', '.').path
     end
   end
 end
