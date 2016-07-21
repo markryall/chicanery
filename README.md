@@ -101,7 +101,7 @@ The following callbacks may be received after checking a web site:
 
 ## Supported CI servers
 
-Currently only ci servers that can provide [cctray reporting format](http://confluence.public.thoughtworks.org/display/CI/Multiple+Project+Summary+Reporting+Standard) are supported.
+Currently only ci servers that can provide [Multiple Project Summary Reporting Standard](https://github.com/erikdoe/ccmenu/wiki/Multiple-Project-Summary-Reporting-Standard) are supported.
 
 This includes thoughtworks go, tddium, travisci, circleci, jenkins, teamcity, cc.net and several others:
 
