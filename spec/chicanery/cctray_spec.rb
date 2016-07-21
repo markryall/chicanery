@@ -1,5 +1,4 @@
-require 'chicanery/cctray'
-require 'vcr'
+require_relative '../spec_helper'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'

@@ -1,5 +1,4 @@
 require 'chicanery/debug'
-require 'colorize'
 
 module Chicanery
   module Handlers

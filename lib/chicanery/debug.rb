@@ -1,3 +1,5 @@
+require 'colorize'
+
 module Chicanery
   module Debug
     def verbose message

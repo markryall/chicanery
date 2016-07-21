@@ -1,3 +1,5 @@
+require_relative '../spec_helper'
+
 describe Chicanery::Collections do
   include Chicanery::Collections
 

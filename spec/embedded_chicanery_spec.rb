@@ -1,3 +1,5 @@
+require_relative 'spec_helper'
+
 describe Chicanery do
   subject { Object.new.extend Chicanery }
 

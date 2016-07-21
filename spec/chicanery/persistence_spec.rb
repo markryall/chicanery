@@ -1,3 +1,5 @@
+require_relative '../spec_helper'
+
 describe Chicanery::Persistence do
   include Chicanery::Persistence
 
