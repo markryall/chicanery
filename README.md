@@ -1,4 +1,4 @@
-# Chicanery [![Build Status](https://secure.travis-ci.org/markryall/chicanery.png)](http://travis-ci.org/markryall/chicanery)
+# Chicanery
 
 This is a command line tool to trigger any kind of action in response to any interesting event in a software development project (such as build server events, commit events, deployment events, etc.).
 
