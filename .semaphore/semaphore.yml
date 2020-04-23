@@ -11,6 +11,9 @@ blocks:
         - name: 'Job #1'
           commands:
             - checkout
-        - name: 'Job #2'
+  - name: specs
+    task:
+      jobs:
+        - name: 'Job #1'
           commands:
             - bundle exec rspec
