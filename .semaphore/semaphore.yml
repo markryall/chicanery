@@ -11,4 +11,5 @@ blocks:
         - name: 'specs'
           commands:
             - checkout
+            - bundle install
             - bundle exec rspec
